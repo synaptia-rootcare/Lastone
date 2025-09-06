@@ -333,4 +333,25 @@ input,select,textarea{font-size:16px} /* evita zoom en iOS */
   .demo-grid{grid-template-columns:1fr}
   .demo-card{max-width:320px}
 }
+/* Nav: que los textos se vean como botón tipo pill (sin degradado celeste) */
+.nav-links .chip{
+  padding:.55rem .9rem;
+  border-radius:999px;
+  border:1px solid #1f2a44;
+  background:linear-gradient(180deg, rgba(16,23,40,.88), rgba(16,23,40,.66));
+  box-shadow:0 10px 24px -14px rgba(0,0,0,.6);
+  min-height:36px;
+  font-weight:600;
+}
+.nav-links .chip:hover,
+.nav-links .chip:focus-visible{
+  border-color:#2b3b61;
+  background:linear-gradient(180deg, rgba(18,26,47,.95), rgba(18,26,47,.72));
+  outline:none;
+}
+.nav-links .chip.active{
+  border-color:#2b3b61;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+}
+
 
