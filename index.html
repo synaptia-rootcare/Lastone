@@ -42,6 +42,295 @@
     /* Watermark Solution */
     #solution{position:relative;overflow:hidden} #solution>.container{position:relative;z-index:1}
     .solution-watermark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(420px,65vw,980px);height:auto;opacity:.12;pointer-events:none;filter:grayscale(1) contrast(1.05);z-index:0}
+    /* Animaciones generales */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Animación de tarjetas y botones */
+    .card, .btn, .chip, .badge {
+      transition: box-shadow .25s, transform .25s, background .25s, color .25s;
+    }
+    .card:hover, .btn:hover, .chip:hover, .badge:hover {
+      box-shadow: 0 8px 32px -8px var(--ring);
+      transform: translateY(-4px) scale(1.025);
+      z-index: 2;
+    }
+
+    /* Chips y badges más pro */
+    .chip, .badge {
+      background: linear-gradient(90deg,rgba(110,231,183,.08),rgba(96,165,250,.08));
+      border: 1px solid #2b3b61;
+      box-shadow: 0 2px 8px -4px var(--ring);
+      padding: .35rem .8rem;
+      border-radius: 999px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background .25s, color .25s;
+    }
+    .chip:hover, .badge:hover {
+      background: linear-gradient(90deg,var(--brand),var(--brand-2));
+      color: #0b0f1a;
+    }
+
+    /* Botón animado */
+    .btn {
+      box-shadow: 0 10px 30px -10px var(--ring), 0 2px 8px -4px var(--ring);
+      transition: background .25s, color .25s, box-shadow .25s, transform .18s;
+    }
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    /* Header sticky mejorado */
+    header {
+      /* ...existing code... */
+      box-shadow: 0 2px 16px -8px rgba(96,165,250,.12);
+      transition: box-shadow .3s, background .3s;
+    }
+    header.scrolled {
+      box-shadow: 0 8px 32px -8px rgba(96,165,250,.22);
+      background: linear-gradient(180deg,rgba(11,15,26,.99),rgba(11,15,26,.72) 60%,transparent);
+    }
+
+    /* Navegación móvil animada */
+    .nav-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--brand-2);
+      cursor: pointer;
+      transition: color .2s;
+    }
+    @media (max-width: 920px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #101728ee;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 12px 32px -8px var(--ring);
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+        min-width: 180px;
+        padding: 1rem 1.2rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px) scale(.98);
+        transition: opacity .3s, transform .3s;
+        z-index: 20;
+      }
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+      }
+    }
+
+    /* Animación de entrada para secciones */
+    section, .card, .member, .step, .tile, .gallery img, .team .member {
+      will-change: opacity, transform;
+    }
+
+    /* Fondo animado de partículas */
+    #bg-particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      transition: opacity .5s;
+    }
+
+    /* Animación de entrada para el logo Sy */
+    .sy-logo-animated {
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+      transition: opacity 1.2s cubic-bezier(.4,0,.2,1), transform 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .sy-logo-animated.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Animación de hover para imágenes de tarjetas */
+    .card img, .tile img {
+      transition: transform .5s cubic-bezier(.4,0,.2,1), box-shadow .3s;
+    }
+    .card:hover img, .tile:hover img {
+      transform: scale(1.06) rotate(-1deg);
+      box-shadow: 0 8px 32px -8px var(--ring);
+    }
+
+    /* Animación escalonada para miembros del equipo */
+    .team .member {
+      opacity: 0;
+      transform: translateY(32px) scale(.98);
+      transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+    }
+    .team .member.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Botón principal con resplandor animado */
+    .btn.glow-animate {
+      box-shadow: 0 0 0 0 var(--brand-2), 0 10px 30px -10px var(--ring), 0 2px 8px -4px var(--ring);
+      animation: btn-glow 2.2s infinite cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes btn-glow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--brand-2), 0 10px 30px -10px var(--ring), 0 2px 8px -4px var(--ring);}
+      50% { box-shadow: 0 0 18px 6px var(--brand-2), 0 10px 30px -10px var(--ring), 0 2px 8px -4px var(--ring);}
+    }
+
+    /* Hero visual impactante */
+    .hero-product-img {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto 1.2rem auto;
+      border-radius: 18px;
+      box-shadow: 0 8px 40px -8px var(--ring), 0 2px 16px -4px #0008;
+      transition: transform .7s cubic-bezier(.4,0,.2,1), box-shadow .5s;
+      animation: hero-pop 1.2s cubic-bezier(.4,0,.2,1);
+      background: #101728;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes hero-pop {
+      0% { opacity: 0; transform: scale(.92) translateY(40px);}
+      100% { opacity: 1; transform: none;}
+    }
+    .hero-product-glow {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%,-50%);
+      width: 120%;
+      height: 120%;
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(32px);
+      opacity: 0.45;
+      background: radial-gradient(ellipse at 50% 60%, var(--brand-2) 0%, transparent 80%);
+      animation: hero-glow 2.8s infinite alternate cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes hero-glow {
+      0% { opacity: 0.32; }
+      100% { opacity: 0.55; }
+    }
+
+    /* Badge de confianza */
+    .badge-award {
+      display: inline-flex;
+      align-items: center;
+      gap: .5em;
+      background: linear-gradient(90deg,#f472b6 10%,#60a5fa 90%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: .5em 1.2em;
+      border-radius: 999px;
+      box-shadow: 0 2px 12px -4px var(--ring);
+      margin-bottom: 1.2rem;
+      letter-spacing: .5px;
+      border: none;
+      position: relative;
+      z-index: 3;
+      animation: badge-pop 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes badge-pop {
+      0% { opacity: 0; transform: scale(.8);}
+      100% { opacity: 1; transform: none;}
+    }
+
+    /* Testimonios */
+    .testimonials-section {
+      padding: 3.5rem 0 2.5rem 0;
+      background: linear-gradient(180deg,rgba(110,231,183,.06),rgba(96,165,250,.04));
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      margin-top: 2.5rem;
+    }
+    .testimonials {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .testimonial {
+      background: #101728;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px -8px var(--ring);
+      padding: 1.3rem 1.2rem 1.1rem 1.2rem;
+      max-width: 340px;
+      min-width: 220px;
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateY(40px) scale(.97);
+      transition: opacity .7s, transform .7s;
+    }
+    .testimonial.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .testimonial-quote {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: .7rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-size: .98rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: .2rem;
+      display: flex;
+      align-items: center;
+      gap: .5em;
+    }
+    .testimonial-author img {
+      width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
+      border: 2px solid var(--brand-2);
+      background: #fff;
+    }
+
+    /* Badge de garantía */
+    .badge-guarantee {
+      display: inline-flex;
+      align-items: center;
+      gap: .5em;
+      background: linear-gradient(90deg,#6ee7b7 10%,#60a5fa 90%);
+      color: #0b0f1a;
+      font-weight: 700;
+      font-size: .98rem;
+      padding: .45em 1.1em;
+      border-radius: 999px;
+      box-shadow: 0 2px 8px -4px var(--ring);
+      margin-top: 1.2rem;
+      letter-spacing: .5px;
+      border: none;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Responsive para testimonios */
+    @media (max-width: 900px) {
+      .testimonials { flex-direction: column; gap: 1.2rem;}
+      .testimonial { max-width: 100%; }
+    }
     /* Responsive */
     @media (max-width:920px){
       .nav{gap:.6rem}.hero{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.how{grid-template-columns:1fr}.team{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr 1fr}.gallery{grid-template-columns:1fr 1fr}
@@ -50,6 +339,8 @@
   </style>
 </head>
 <body>
+  <!-- Fondo animado de partículas -->
+  <canvas id="bg-particles"></canvas>
   <header>
     <div class="container nav">
       <div class="logo"><span class="dot"></span> ROOTCARE by SynaptIA</div>
@@ -57,7 +348,6 @@
       <nav id="primary-nav" class="nav-links">
         <a href="#challenge" class="chip">Challenge</a>
         <a href="#solution" class="chip">Solution</a>
-        <a href="#how" class="chip">How it works</a>
         <a href="#assembly" class="chip">Assembly</a>
         <a href="#evidence" class="chip">Evidence</a>
         <a href="#team" class="chip">Team</a>
@@ -67,24 +357,29 @@
   </header>
 
   <main>
-    <section class="hero container" id="home">
+    <!-- Agrega la clase fade-in a las secciones principales -->
+    <section class="hero container fade-in" id="home">
       <div>
+        <!-- <span class="badge-award">🏆 Awarded Project</span> --> <!-- Eliminado -->
         <span class="pill">Automatic irrigation · Wi-Fi · Species profiles</span>
         <h1>Make your plants thrive with <span style="background:linear-gradient(90deg,#6ee7b7,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent">RootCare</span></h1>
         <p style="color:var(--muted)">Greenhouse prototype with pulse irrigation, moisture sensor, and ESP8266 control. Optimizes water use, reduces operational friction, and simplifies care in apartments and micro-farming.</p>
         <div class="cta">
-          <a class="btn" href="#solution">See solution</a>
+          <a class="btn glow-animate" href="#solution" style="font-size:1.18rem;padding:1.1rem 2.2rem;">See solution</a>
           <a class="btn secondary" href="#video">Watch video</a>
         </div>
+        <span class="badge-guarantee">🌱 Eco Friendly & Satisfaction Guarantee</span>
         <div class="kpis">
           <div class="kpi"><div>Water use</div><strong>Only when required</strong><div class="note">Pulse irrigation with moisture threshold.</div></div>
           <div class="kpi"><div>Control</div><strong>Wi-Fi + LCD</strong><div class="note">Simple web UI + on-screen feedback.</div></div>
           <div class="kpi"><div>Profiles</div><strong>By plant type</strong><div class="note">Parameters tailored by species.</div></div>
         </div>
       </div>
-      <div class="hero-card">
-        <div class="glow"></div>
-        <div style="aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden">
+      <div class="hero-card" style="position:relative;">
+        <div class="hero-product-glow"></div>
+        <!-- <img src="assets/ui-web.png" alt="RootCare Product" class="hero-product-img" style="position:relative;z-index:2;"> --> <!-- Eliminado -->
+        <!-- ...existing video... -->
+        <div style="aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-top:1.2rem;">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Uq_3Y0Yeg-E" title="RootCare promotional video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:.6rem .2rem">
@@ -94,7 +389,7 @@
       </div>
     </section>
 
-    <section id="challenge">
+    <section id="challenge" class="fade-in">
       <div class="container">
         <h2>Challenge: compact cities and water crisis</h2>
         <p class="note">Urbanization → apartments without yards. Global water crisis that in Chile affects ≈76% of the territory. Consumption priorities shift to health, sustainability, and home gardens.</p>
@@ -106,7 +401,7 @@
       </div>
     </section>
 
-    <section id="solution">
+    <section id="solution" class="fade-in">
       <img class="solution-watermark" src="assets/logo/rootcare.png" alt="" aria-hidden="true" />
       <div class="container">
         <h2>Solution: RootCare</h2>
@@ -139,34 +434,7 @@
       </div>
     </section>
 
-    <section id="how">
-      <div class="container how">
-        <div>
-          <h2>How it works</h2>
-          <div class="steps" id="steps">
-            <div class="step active"><div>1</div><div><strong>Read moisture</strong><div class="note">Real-time sensor defines whether irrigation is needed.</div></div></div>
-            <div class="step"><div>2</div><div><strong>Plant profile</strong><div class="note">Configurable thresholds per species.</div></div></div>
-            <div class="step"><div>3</div><div><strong>Decision on ESP8266</strong><div class="note">Wi-Fi connectivity and control logic.</div></div></div>
-            <div class="step"><div>4</div><div><strong>Pulse irrigation</strong><div class="note">Activates valve/relay only for the necessary seconds.</div></div></div>
-            <div class="step"><div>5</div><div><strong>Feedback</strong><div class="note">LCD and web UI report live status.</div></div></div>
-          </div>
-          <div class="tabs" id="featureTabs">
-            <button class="tab active" data-pane="auto">Automatic irrigation</button>
-            <button class="tab" data-pane="remote">Remote monitoring</button>
-            <button class="tab" data-pane="quick">Quick access</button>
-          </div>
-          <div id="pane-auto" class="card"><h3>Automatic irrigation</h3><p class="note">Control around the optimal moisture point. Less water. Healthier roots.</p></div>
-          <div id="pane-remote" class="card" style="display:none"><h3>Remote monitoring</h3><p class="note">On the local network you see status, short history, and basic alerts.</p></div>
-          <div id="pane-quick" class="card" style="display:none"><h3>Quick access</h3><p class="note">Minimal UI to pick a plant and view status at a glance.</p></div>
-        </div>
-        <div>
-          <div class="tile" style="height:320px">Web Interface (placeholder)</div>
-          <div class="note" style="margin-top:.6rem">Tip: replace this card with a screenshot of your real UI (./assets/ui-web.png).</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="evidence">
+    <section id="evidence" class="fade-in">
       <div class="container">
         <h2>Evidence of need</h2>
         <div class="two-col">
@@ -196,7 +464,7 @@
       </div>
     </section>
 
-    <section id="audience">
+    <section id="audience" class="fade-in">
       <div class="container">
         <h2>Target audience</h2>
         <div class="two-col">
@@ -212,7 +480,7 @@
       </div>
     </section>
 
-    <section id="ecosystem (press to see the hideen info)">
+    <section id="ecosystem (press to see the hideen info)" class="fade-in">
       <div class="container">
         <h2>Ecosystem</h2>
         <div class="ecosistema-grid">
@@ -238,7 +506,7 @@
       </div>
     </section>
 
-    <section id="interfaces">
+    <section id="interfaces" class="fade-in">
       <div class="container">
         <h2>Interfaces</h2>
         <div class="two-col">
@@ -259,7 +527,7 @@
       </div>
     </section>
 
-    <section id="assembly">
+    <section id="assembly" class="fade-in">
       <div class="container">
         <h2>Prototype assembly</h2>
         <div class="two-col" style="align-items:start">
@@ -281,7 +549,7 @@
       </div>
     </section>
 
-    <section id="demo">
+    <section id="demo" class="fade-in">
   <div class="container">
     <h2 id="video">Prototype in action</h2>
 
@@ -317,11 +585,11 @@
   </div>
 </section>
 
-    <section id="team">
+    <section id="team" class="fade-in">
   <div class="container">
     <h2>Meet our team</h2>
 
-    <div class="team">
+    <div class="team" id="teamMembers">
       <div class="member"><img src="assets/team/mathias.webp" alt="Mathias Deumacán" class="avatar"/><strong>Mathias Deumacán</strong><div class="note">Leader</div></div>
       <div class="member"><img src="assets/team/juanma.webp"  alt="Juan Manuel Andrade" class="avatar"/><strong>Juan Manuel Andrade</strong><div class="note">Builder</div></div>
       <div class="member"><img src="assets/team/gianfranco.webp" alt="Gianfranco Bano" class="avatar"/><strong>Gianfranco Bano</strong><div class="note">Commercial Manager</div></div>
@@ -332,42 +600,198 @@
     <div class="cta" style="margin-top:1rem">
       <a
         class="btn"
-        href="mailto:synaptias@gmail.com?subject=Interest%20in%20RootCare&body=Hello%2C%20I%27m%20interested%20in%20RootCare%20and%20would%20like%20more%20information.%20Could%20we%20connect%20soon%3F"
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=synaptias@gmail.com&su=Interest%20in%20RootCare&body=Hello%2C%20I%27m%20interested%20in%20RootCare%20and%20would%20like%20more%20information.%20Could%20we%20connect%20soon%3F"
+        target="_blank" rel="noopener"
       >Contact us about RootCare</a>
     </div>
   </div>
 </section>
 
+  <footer class="fade-in">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <div class="container" style="padding:2.2rem 0 1.2rem 0; border-top:1px solid rgba(255,255,255,0.07);">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.2rem;">
+        <div style="
+          font-size:1.38rem;
+          color:var(--text);
+          font-family:'Montserrat',Arial,sans-serif;
+          letter-spacing:1.2px;
+          text-shadow:0 2px 16px rgba(96,165,250,0.13),0 1px 0 #000;
+          background:linear-gradient(90deg,#6ee7b7 10%,#60a5fa 90%);
+          -webkit-background-clip:text;
+          background-clip:text;
+          color:transparent;
+          display:inline-block;
+        ">
+          <strong>RootCare by SynaptIA<sup style="font-size:.8em;vertical-align:super;color:inherit;">®</sup></strong>
+        </div>
+        <nav style="display:flex;gap:1.2rem;flex-wrap:wrap;">
 
-    <section>
-  <div class="container">
-    <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:1rem">
-      <div>
-        <h3>Want to see this wonderful project again?</h3>
-        <p class="note">go back to the top.</p>
+        </nav>
       </div>
-      <div class="cta">
-        <a class="btn secondary" href="#home">Back to top</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <footer>
-    <div class="container">
-      <div style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-        <div class="note">© RootCare – demonstrative prototype. Content and data according to the project document.</div>
-        <div style="display:flex;gap:.8rem">
-          <span class="chip">ESP8266</span><span class="chip">Pulse irrigation</span><span class="chip">LCD</span><span class="chip">Species profiles</span>
+      <div style="margin-top:1.2rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.2rem;">
+        <div style="color:var(--muted);font-size:.97rem;">
+          &copy; <span id="year"></span> RootCare. All rights reserved. | Powered by SynaptIA.
+        </div>
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
+          <span class="chip">ESP8266</span>
+          <span class="chip">Pulse irrigation</span>
+          <span class="chip">LCD</span>
+          <span class="chip">Species profiles</span>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Logo Sy decorativo al final de la página -->
+  <img
+    src="assets/logo/sy.png"
+    alt="SynaptIA logo"
+    class="sy-logo-animated"
+    style="
+      position: fixed;
+      right: 2vw;
+      bottom: 2vw;
+      width: clamp(100px, 16vw, 220px);
+      height: auto;
+      opacity: 0.22;
+      z-index: 999;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 2px 12px rgba(0,0,0,0.16));
+      transition: opacity 1.2s, transform 1.2s;
+    "
+    aria-hidden="true"
+  />
+
+  <!-- Animaciones y menú móvil -->
+  <script>
+    // Fondo de partículas animadas
+    (() => {
+      const canvas = document.getElementById('bg-particles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = window.innerWidth, h = window.innerHeight;
+      let particles = [];
+      function resize() {
+        w = window.innerWidth; h = window.innerHeight;
+        canvas.width = w; canvas.height = h;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+      // Partículas sutiles
+      const PARTICLE_COUNT = Math.floor(w / 48) + 18;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.8 + 1.2,
+          dx: (Math.random() - 0.5) * 0.18,
+          dy: (Math.random() - 0.5) * 0.18,
+          o: Math.random() * 0.5 + 0.18
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+          ctx.fillStyle = `rgba(110,231,183,${p.o})`;
+          ctx.shadowColor = "#60a5fa";
+          ctx.shadowBlur = 8;
+          ctx.fill();
+          p.x += p.dx; p.y += p.dy;
+          if (p.x < 0 || p.x > w) p.dx *= -1;
+          if (p.y < 0 || p.y > h) p.dy *= -1;
+        }
+        ctx.shadowBlur = 0;
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // Animación de fade-in al hacer scroll
+    function revealOnScroll() {
+      const elements = document.querySelectorAll('.fade-in');
+      const trigger = window.innerHeight * 0.92;
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < trigger) {
+          el.classList.add('visible');
+        }
+      });
+      // Animación escalonada para miembros del equipo
+      const members = document.querySelectorAll('.team .member');
+      members.forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) {
+          setTimeout(() => el.classList.add('visible'), i * 120);
+        }
+      });
+      // Logo Sy animado
+      const syLogo = document.querySelector('.sy-logo-animated');
+      if (syLogo) {
+        syLogo.classList.add('visible');
+      }
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('DOMContentLoaded', () => {
+      revealOnScroll();
+      // Header shadow on scroll
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 12) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      });
+
+      // Menú móvil animado
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.getElementById('primary-nav');
+      navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      // Cierra menú al hacer click en un link
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    });
+
+    // Animación de testimonios al hacer scroll
+    function revealTestimonials() {
+      const testimonials = document.querySelectorAll('.testimonial');
+      testimonials.forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.92) {
+          setTimeout(() => el.classList.add('visible'), i * 180);
+        }
+      });
+    }
+    window.addEventListener('scroll', revealTestimonials);
+    window.addEventListener('DOMContentLoaded', revealTestimonials);
+
+    // Año dinámico para el footer
+    document.addEventListener('DOMContentLoaded', function() {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
